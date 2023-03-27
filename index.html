@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vueBasicoTaller2</title>
+    <script src="app.js" type="module"></script>
+</head>
+<body>
+    <form v-model="campusInfo" id="app">
+
+        <h2>Campus</h2>
+        <select id="ciudad" v-model="selecCiudad" >
+            <label>Sede</label>
+            <option v-for="(ciudad, id) of sedes">{{ciudad}}</option>
+        </select><br>
+        <label>Telefono  </label>
+        <input type="number" v-model="telefonoSede" pattern="[0-9]+"><br>
+        <label>Direccion </label>
+        <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="direcCampus"><br>
+        
+        <h2>Profesores y estudiantes</h2>
+        <label>Nombre  </label>
+        <input type="text" v-model="nomProfesor"><br>
+        <label>Apelldio  </label>
+        <input type="text" v-model="apeProfesor">
+        <h3>Teams</h3>
+        <label>Dia en que se reunen   </label>
+        <input type="date"><br>
+        <label>Hora en que se reunen   </label>
+        <input type="time"><br>
+        <label>Piso en el que se reunen   </label>
+        <input type="number" pattern="[0-9]+"><br>
+        <label>Numero del salon en el que se reunen   </label>
+        <input type="number" pattern="[0-9]+"><br>
+        <label >Elija su rol  </label>
+        <select name="" id="">
+            <option v-for="(rol, id) of roles">{{rol}}</option>
+        </select>
+        <button @click.prevent="buttonEnviar"></button>
+        <div v-for="sede in campus">{{campus}}</div>
+    </form>
+    
+    <form>
+        <h3></h3>
+    </form>
+</body>
+</html>

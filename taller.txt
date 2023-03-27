@@ -1,0 +1,18 @@
+1.	Construir un objeto literal "campus" que gestione la info(PROPIEDADES) de Campus, profesores, estudiantes, niveles, tecnologías, teams y roadMap
+
+•	De campus administrar los datos de contacto de las sedes en Bucaramanga, Bogotá, Medellín y México 
+•	De los profesores y estudiantes, su nombre, sus teléfonos, teams (horarios de las teams=> día, hora y salones (nro y piso), y el email, y de los estudiantes  también horarios. 
+•	De los estudiantes, también gestionar su nivel actual, como su barrio y medio de transporte 
+•	De los niveles, su pre requisito, a que tecnología pertenece, si es electiva u obligatoria 
+•	De la roadmap , Nro de créditos, año, Nro de asignaturas
+
+2.	Consultas: Usando Destructuring, 
+
+
+•	De los profesores, reportar si la asignatura (tecnología) es remota o presencial y de los estudiantes el nombre de salón. 
+•	El teléfono de la sede de Medellín y la dirección de la sede de Bucaramanga 
+•	De la asignatura (tecnología) si tiene pruebas de selecion o no
+
+
+3.	Consultas: Usando sintaxis de punto.
+•	Reportar, prerequisito de la asignatura (tecnología) y nro de créditos 
