@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,43 +8,86 @@
     <title>vueBasicoTaller2</title>
     <script src="app.js" type="module"></script>
 </head>
+
 <body>
     <form v-model="campusInfo" id="app">
 
         <h2>Campus</h2>
-        <select id="ciudad" v-model="selecCiudad" >
-            <label>Sede</label>
+        <label >Sede: </label>
+        <select id="ciudad" v-model="campus.Sedes.ciudCampus">
+            <label></label>
             <option v-for="(ciudad, id) of sedes">{{ciudad}}</option>
         </select><br>
-        <label>Telefono  </label>
-        <input type="number" v-model="telefonoSede" pattern="[0-9]+"><br>
-        <label>Direccion </label>
-        <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="direcCampus"><br>
-        
-        <h2>Profesores y estudiantes</h2>
-        <label>Nombre  </label>
-        <input type="text" v-model="nomProfesor"><br>
-        <label>Apelldio  </label>
-        <input type="text" v-model="apeProfesor">
-        <h3>Teams</h3>
-        <label>Dia en que se reunen   </label>
-        <input type="date"><br>
-        <label>Hora en que se reunen   </label>
-        <input type="time"><br>
-        <label>Piso en el que se reunen   </label>
-        <input type="number" pattern="[0-9]+"><br>
-        <label>Numero del salon en el que se reunen   </label>
-        <input type="number" pattern="[0-9]+"><br>
-        <label >Elija su rol  </label>
-        <select name="" id="">
-            <option v-for="(rol, id) of roles">{{rol}}</option>
-        </select>
-        <button @click.prevent="buttonEnviar"></button>
-        <div v-for="sede in campus">{{campus}}</div>
-    </form>
-    
+        <label>Telefono: </label>
+        <input type="number" v-model="campus.Sedes.telefono" pattern="[0-9]+"><br>
+        <label>Direccion: </label>
+        <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.Sedes.direccion"><br>
+        <br>
+        <div>
+            <label>Elija su rol </label>
+            <select v-model="rol">
+                <label>asd</label>
+                <option v-for="(rol, id) of roles">{{rol}}</option>
+            </select>
+
+            <div v-if="rol!=null && rol=='Profesor'" name="profesor">
+                <form>
+                    <label>Nombre</label>
+                    <input type="text" v-model="campus.profesor.nombre"><br>
+                    <label>Apelldio </label>
+                    <input type="text" v-model="campus.profesor.apellido"><br>
+                    <label>Telefono: </label>
+                    <input type="text" v-model="campuss.profesor.telefono"><br>
+                    <h3>Teams</h3>
+                    <label>Dia en que se reunen </label>
+                    <input type="date" v-model="campuss.profesor.fecha"><br>
+                    <label>Hora en que se reunen </label>
+                    <input type="time" v-model="campus.profesor.hora"><br>
+                    <label>Piso en el que se reunen </label>
+                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.piso"><br>
+                    <label>Numero del salon en el que se reunen </label>
+                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.salon"><br>
+                    <label>email</label>
+                    <input type="text"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.profesor.email">
+                </form>
+            </div>
+            <div v-if="rol!=null && rol=='Estudiante'" name="estudiante"><br>
+                <form>
+                    <label>Nombre: </label>
+                    <input type="text" v-model="campuss.estudiante.nombre"><br>
+                    <label>Apelldio: </label>
+                    <input type="text" v-model="campus.estudiante.apellido"><br>
+                    <label>Telefono: </label>
+                    <input type="text" v-model="campus.estudiante.telefono"><br>
+                    <h3>Teams</h3>
+                    <label>Dia en que se reunen </label>
+                    <input type="date" v-model="campus.estudiante.fecha"><br>
+                    <label>Hora en que se reunen </label>
+                    <input type="time" v-model="campus.estudiante.hora"><br>
+                    <label>Piso en el que se reunen </label>
+                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.piso"><br>
+                    <label>Numero del salon en el que se reunen </label>
+                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.salon"><br>
+                    <label>email</label>
+                    <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.estudiante.email">
+                </form>
+            </div>
+            <div>
+                <form>
+                    <h3>Niveles</h3>
+                    <label>Tecnologia a la que pertenece</label>
+                    <select name="tecnologiaPer" >
+                        <option value=""></option>
+                    </select>
+                </form>
+            </div>
+    </form><br>
+    <button @click.prevent="buttonEnviar">Enviar</button>
+    <div v-for="sede in campus">{{sede}}</div>
     <form>
         <h3></h3>
     </form>
+    </div>
 </body>
+
 </html>
