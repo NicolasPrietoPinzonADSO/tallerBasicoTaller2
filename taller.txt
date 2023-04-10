@@ -16,3 +16,4 @@
 
 3.	Consultas: Usando sintaxis de punto.
 •	Reportar, prerequisito de la asignatura (tecnología) y nro de créditos 
+ 

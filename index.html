@@ -10,84 +10,222 @@
 </head>
 
 <body>
-    <form v-model="campusInfo" id="app">
+    <form v-model="campusInfo" id="app" ref="form">
 
         <h2>Campus</h2>
-        <label >Sede: </label>
-        <select id="ciudad" v-model="campus.Sedes.ciudCampus">
+        <label>Sede: </label>
+        <select v-model="campus.Sedes.ciudCampus">
             <label></label>
             <option v-for="(ciudad, id) of sedes">{{ciudad}}</option>
         </select><br>
         <label>Telefono: </label>
         <input type="number" v-model="campus.Sedes.telefono" pattern="[0-9]+"><br>
         <label>Direccion: </label>
-        <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.Sedes.direccion"><br>
+        <input type="text"  v-model="campus.Sedes.direccion"><br>
         <br>
-        <div>
+        <div name="entireForm">
             <label>Elija su rol </label>
             <select v-model="rol">
                 <label>asd</label>
                 <option v-for="(rol, id) of roles">{{rol}}</option>
             </select>
 
-            <div v-if="rol!=null && rol=='Profesor'" name="profesor">
+            <div v-if="rol!=null && rol=='Profesor'" name="profesor"><br>
                 <form>
-                    <label>Nombre</label>
-                    <input type="text" v-model="campus.profesor.nombre"><br>
-                    <label>Apelldio </label>
-                    <input type="text" v-model="campus.profesor.apellido"><br>
+                    <h3>Profesores</h3>
+                    <label>Nombre: </label>
+                    <input type="text" v-model="campus.profesor.nombreProf"><br>
+                    <label>Apellido: </label>
+                    <input type="text" v-model="campus.profesor.apellidoProf"><br>
                     <label>Telefono: </label>
-                    <input type="text" v-model="campuss.profesor.telefono"><br>
+                    <input type="text" v-model="campus.profesor.telefonoProf"><br>
                     <h3>Teams</h3>
                     <label>Dia en que se reunen </label>
-                    <input type="date" v-model="campuss.profesor.fecha"><br>
+                    <input type="date" v-model="campus.profesor.fechaProf"><br>
                     <label>Hora en que se reunen </label>
-                    <input type="time" v-model="campus.profesor.hora"><br>
+                    <input type="time" v-model="campus.profesor.horaProf"><br>
                     <label>Piso en el que se reunen </label>
-                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.piso"><br>
+                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.pisoProf"><br>
                     <label>Numero del salon en el que se reunen </label>
-                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.salon"><br>
-                    <label>email</label>
-                    <input type="text"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.profesor.email">
+                    <input type="number" pattern="[0-9]+" v-model="campus.profesor.salonProf"><br>
+                    <label>Email </label>
+                    <input type="text" v-model="campus.profesor.emailProf">
                 </form>
             </div>
             <div v-if="rol!=null && rol=='Estudiante'" name="estudiante"><br>
                 <form>
+                    <h3>Estudiantes</h3>
                     <label>Nombre: </label>
-                    <input type="text" v-model="campuss.estudiante.nombre"><br>
-                    <label>Apelldio: </label>
-                    <input type="text" v-model="campus.estudiante.apellido"><br>
+                    <input type="text" v-model="campus.estudiante.nombreEstu"><br>
+                    <label>Apellido: </label>
+                    <input type="text" v-model="campus.estudiante.apellidoEstu"><br>
                     <label>Telefono: </label>
-                    <input type="text" v-model="campus.estudiante.telefono"><br>
+                    <input type="text" v-model="campus.estudiante.telefonoEstu"><br>
                     <h3>Teams</h3>
                     <label>Dia en que se reunen </label>
-                    <input type="date" v-model="campus.estudiante.fecha"><br>
+                    <input type="date" v-model="campus.estudiante.fechaEstu"><br>
                     <label>Hora en que se reunen </label>
-                    <input type="time" v-model="campus.estudiante.hora"><br>
+                    <input type="time" v-model="campus.estudiante.horaEstu"><br>
                     <label>Piso en el que se reunen </label>
-                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.piso"><br>
+                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.pisoEstu"><br>
                     <label>Numero del salon en el que se reunen </label>
-                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.salon"><br>
-                    <label>email</label>
-                    <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" v-model="campus.estudiante.email">
+                    <input type="number" pattern="[0-9]+" v-model="campus.estudiante.salonEstu"><br>
+                    <label>Email </label>
+                    <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        v-model="campus.estudiante.emailEstu"><br>
+                    <label>Medio en el que se transporta </label>
+                    <input type="text" v-model="campus.estudiante.trasnporteEstu"><br>
+                    <label>Barrio </label>
+                    <input type="text" v-model="campus.estudiante.barrioEstu">
                 </form>
             </div>
             <div>
-                <form>
-                    <h3>Niveles</h3>
-                    <label>Tecnologia a la que pertenece</label>
-                    <select name="tecnologiaPer" >
-                        <option value=""></option>
-                    </select>
-                </form>
+                <h3>Niveles</h3>
+                <label>Tecnologia a la que pertenece: </label>
+                <select v-model="tecnologiaPer">
+                    <option v-for="tecnologia in tecnologias" >{{tecnologia}}</option>
+                </select>
+                <div v-if="tecnologiaPer!=null && tecnologiaPer=='ADSO'">
+                    <form><br>
+                        <label>Prerrequisito</label>
+                        <select >
+                            <option selected="true" disabled="disabled">SI</option>
+                        </select><br>
+                        <ul>
+                            <li>Titulo: Tecnico en sistemas</li>
+                        </ul>
+                        <label>Eleccion de formacion de formacion:</label>
+                        <select v-model="campus.tecnologia.eleccionFormacionADSO">
+                            <option v-for="formacion of eleccionFormacion">{{formacion}}</option>
+                        </select><br>
+                        <label>Prueba de preseleccion</label>
+                        <select>
+                            <option selected="true" disabled="disabled">NO</option>
+                        </select><br>
+                        <label>Tipo de formacion:</label>
+                        <select v-model="campus.tecnologia.tipoFormacionADSO">
+                            <option v-for="(formacion,id) of tipoFormacion">{{formacion}}</option>
+                        </select><br>
+                        <label>Ingrese su cantidad de creditos: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numCreditosADSO"><br>
+                        <label>Cantidad de asignaturas: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numAsignaturaADSO">
+                    </form>
+                </div>
+                <div v-if="tecnologiaPer!=null && tecnologiaPer=='Electricidad'">
+                    <form><br>
+                        <label>Prerrequisito</label>
+                        <select name="" id="">
+                            <option selected="true" disabled="disabled">NO</option>
+                        </select><br>
+                        <label>Eleccion de formacion de formacion:</label>
+                        <select v-model="campus.tecnologia.eleccionFormacionElec">
+                            <option v-for="(formacion,id) of eleccionFormacion">{{formacion}}</option>
+                        </select><br>
+                        
+                        <label>Prueba de preseleccion</label>
+                        <select name="" id="">
+                            <option selected="true" disabled="disabled">NO</option>
+                        </select><br>
+                        <label>Tipo de formacion:</label>
+                        <select v-model="campus.tecnologia.tipoFormacionElec">
+                            <option v-for="(formacion,id) of tipoFormacion">{{formacion}}</option>
+                        </select><br>
+                        <label>Ingrese su cantidad de creditos: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numCreditosElec"><br>
+                        <label>Cantidad de asignaturas: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numAsignaturaElec">
+                    </form>
+                </div>
+                <div v-if="tecnologiaPer!=null && tecnologiaPer=='Mecanica'">
+                    <form><br>
+                        <label>Prerrequisito</label>
+                        <select name="" id="">
+                            <option selected="true" disabled="disabled">NO</option>
+                        </select><br>
+                        <label>Eleccion de formacion de formacion:</label>
+                        <select v-model="campus.tecnologia.eleccionFormacionMec">
+                            <option v-for="(formacion,id) of eleccionFormacion">{{formacion}}</option>
+                        </select><br>
+                        
+                        <label>Prueba de preseleccion</label>
+                        <select name="" id="">
+                            <option selected="true" disabled="disabled">NO</option>
+                        </select><br>
+                        <label>Tipo de formacion:</label>
+                        <select v-model="campus.tecnologia.tipoFormacionMec">
+                            <option v-for="(formacion,id) of tipoFormacion">{{formacion}}</option>
+                        </select><br>
+                        <label>Ingrese su cantidad de creditos: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numCreditosMec"><br>
+                        <label>Cantidad de asignaturas: </label>
+                        <input type="number" pattern="[0-9]+" v-model="campus.tecnologia.numAsignaturaMec">
+                    </form>
+                </div>
             </div>
-    </form><br>
-    <button @click.prevent="buttonEnviar">Enviar</button>
-    <div v-for="sede in campus">{{sede}}</div>
-    <form>
-        <h3></h3>
+            <div></div>
+            <button @click.prevent="buttonEnviar">Enviar</button>
+            <!-- <div v-for="sede in campus">{{sede}}</div> -->
+            <div v-for="(mapeos, id) in mapeo">{{mapeos}}</div>
+            <button @click.prevent="consultaDestructuring" v-model="bool">Consultas</button>
+            <div v-if="bool"> 
+                <table>
+                    <thead>
+                        <th>Profesor</th>
+                        <tr>
+                            <th><b>Nombre Programa</b></th>
+                            <th>Modalidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(map,id) in mapeo">
+                            <th>{{map.nombreADSO}}</th>
+                            <th>{{map.eleccionFormacionADSO}}</th>
+                        </tr>
+                        <tr v-for="(map,id) in mapeo">
+                            <th>{{map.nombreElec}}</th>
+                            <th>{{map.eleccionFormacionElec}}</th>
+                        </tr>
+                        <tr v-for="(map,id) in mapeo">
+                            <th>{{map.nombreMec}}</th>
+                            <th>{{map.eleccionFormacionMec}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <th>Estudiante</th>
+                        <tr>
+                            <th><b>Nombre Estudiante</b></th>
+                            <th>Salon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(map,id) in mapeo">
+                            <th>{{map.nombreEstu}}</th>
+                            <th>{{map.salonEstu}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <th>Sedes</th>
+                        <tr>
+                            <th><b>Nombre Sede</b></th>
+                            <th>Telefono sede</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(map,id) in mapeo">
+                            <th>{{map.nombreEstu}}</th>
+                            <th>{{map.salonEstu}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </form>
-    </div>
+
 </body>
 
 </html>
